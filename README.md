@@ -18,7 +18,8 @@ Dengan Fitur Simple Yang Di Sediakan
   PHP VERSION: 0.0.0
 
 - DISABLE FUNC: 
-  MySQL: ON/OFF | cURL: ON/OFF | WGET: ON/OFF | Perl: ON/OFF | Python: ON/OFF
+
+- MySQL: ON/OFF | cURL: ON/OFF | WGET: ON/OFF | Perl: ON/OFF | Python: ON/OFF
 
 - Upload File
 
