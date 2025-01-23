@@ -27,7 +27,7 @@ Dengan Fitur Simple Yang Di Sediakan
   X | X
 
 - Lokasi Directory
- _________________________
+ |-----------------------|
  | contoh / contoh / www |
  |-----------------------|
 - Buat Directory
