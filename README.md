@@ -15,7 +15,7 @@ Dengan Fitur Simple Yang Di Sediakan
 
 - HDD: 0.0 GB/MB/KB / 0.0 GB/MB/KB (Free: 00.0 GB/MB/KB)
 
-  PHP VERSION: 0.0.0
+- PHP VERSION: 0.0.0
 
 - DISABLE FUNC: 
 
@@ -27,9 +27,9 @@ Dengan Fitur Simple Yang Di Sediakan
   X | X
 
 - Lokasi Directory
-
-  contoh / contoh / www
-
+ _________________________
+ | contoh / contoh / www |
+ |-----------------------|
 - Buat Directory
 
 - File List
