@@ -24,7 +24,7 @@ Ini Selebihnya Murni Buatan Sendiri
 - Upload File
 
 - Detected Drives
-  X | X
+| X | X
 
 - Lokasi Directory
  _________________________
