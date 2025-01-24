@@ -35,6 +35,7 @@ Dengan Fitur Simple Yang Di Sediakan
 - Buat Directory
 
 - File List
+
   [FILE] .htaccess | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
   [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
   [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
