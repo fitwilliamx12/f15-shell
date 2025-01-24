@@ -4,8 +4,10 @@
 
 Ini Selebihnya Murni Buatan Sendiri
 
-- Dengan Fitur Simple Yang Di Sediakan
-  SERVER IP: -
+[ Masih Tahap Pengembangan ]
+
+Dengan Fitur Simple Yang Di Sediakan
+- SERVER IP: -
 
 - YOUR IP: -
 
