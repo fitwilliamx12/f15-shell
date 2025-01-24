@@ -1,6 +1,6 @@
 # f15-shell
 
-![f15.png](https://github.com/user-attachments/assets/537a1da7-ec6c-45c6-91d8-ea9d928a42ae)
+![f15.png](https://github.com/user-attachments/assets/923dd4df-9c3f-46f5-ace9-b604d90e9aca)
 
 Ini Selebihnya Murni Buatan Sendiri
 
@@ -33,6 +33,15 @@ Dengan Fitur Simple Yang Di Sediakan
  | contoh / contoh / www |
  |-----------------------|
 - Buat Directory
+
+- File List
+  [FILE] .htaccess | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
+  [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
+  [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
+  [FILE] X.php | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
+  [DIR] File
+  [DIR] File
+  [DIR] File
 
 - File List
 
