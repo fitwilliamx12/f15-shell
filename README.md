@@ -4,14 +4,14 @@
 
 Ini Selebihnya Murni Buatan Sendiri
 
-Dengan Fitur Simple Yang Di Sediakan
+- Dengan Fitur Simple Yang Di Sediakan
   SERVER IP: -
 
-  YOUR IP: -
+- YOUR IP: -
 
-  WEB SERVER: 
+- WEB SERVER: 
 
-  SYSTEM: 
+- SYSTEM: 
 
 - HDD: 0.0 GB/MB/KB / 0.0 GB/MB/KB (Free: 00.0 GB/MB/KB)
 
