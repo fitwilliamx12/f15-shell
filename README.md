@@ -40,10 +40,53 @@ Dengan Fitur Simple Yang Di Sediakan
   [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
   [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
   [FILE] X.php | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
+
   [DIR] File
   [DIR] File
   [DIR] File
 
 - File List
 
-- CMD
+- CMD [ Windows ]
+
+![f15](https://github.com/user-attachments/assets/2ed595e5-9e22-4bed-94c4-34f1466cfaa7)
+
+ff15.php
+
+- SERVER IP: -
+
+- YOUR IP: -
+
+- WEB SERVER: 
+
+- SYSTEM: 
+
+- HDD: 0.0 GB/MB/KB / 0.0 GB/MB/KB (Free: 00.0 GB/MB/KB)
+
+- PHP VERSION: 0.0.0
+
+- DISABLE FUNC: 
+
+- MySQL: ON/OFF | cURL: ON/OFF | WGET: ON/OFF | Perl: ON/OFF | Python: ON/OFF
+
+- Upload File
+
+- Lokasi Directory
+ _________________________
+ | contoh / contoh / www |
+ |-----------------------|
+- Buat Directory
+
+- File List
+  [DIR] File | Delete
+  [DIR] File | Delete
+  [DIR] File | Delete
+
+  [FILE] .htaccess | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | View | Edit | Delete
+  [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | View | Edit | Delete
+  [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | View | Edit | Delete
+  [FILE] X.php | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | View | Edit | Delete
+
+- File List
+
+- CMD [ Linux ]
