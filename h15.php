@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$correctPasswordHash = 'b1fbd7e666a56c405c73b4b144d69156'; // sipur
+$correctPasswordHash = '5f4dcc3b5aa765d61d8327deb882cf99'; // password
 
 if (isset($_POST['password'])) {
     $enteredPassword = $_POST['password'];
