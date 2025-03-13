@@ -1,10 +1,10 @@
 # f15-shell
 
-![f15.png](https://github.com/user-attachments/assets/923dd4df-9c3f-46f5-ace9-b604d90e9aca)
+![f15](https://github.com/user-attachments/assets/8cc5f9c9-b1b9-4884-a382-d3a74c17fe1d)
 
 Ini Selebihnya Murni Buatan Sendiri
 
-[ Masih Tahap Pengembangan ]
+[ FINAL ]
 
 Dengan Fitur Simple Yang Di Sediakan
 - SERVER IP: -
@@ -34,20 +34,24 @@ Dengan Fitur Simple Yang Di Sediakan
  |-----------------------|
 - Buat Directory
 
+- Directory List
+  
+  [DIR] File | Delete | Rename
+  [DIR] File | Delete | Rename
+  [DIR] File | Delete | Rename
+
 - File List
 
-  [FILE] .htaccess | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
-  [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
-  [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
-  [FILE] X.php | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete
-
-  [DIR] File
-  [DIR] File
-  [DIR] File
+  [FILE] .htaccess | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete | View | Edit | Delete | Rename
+  [FILE] X.html | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete | View | Edit | Delete | Rename
+  [FILE] X.txt | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete | View | Edit | Delete | Rename
+  [FILE] X.php | Size: 0 bytes | Modified: 20XX-XX-XX 0X:0X:0X | Delete | View | Edit | Delete | Rename
 
 - File List
 
 - CMD [ Windows ]
+  
+  f15.php UNTUK VERSI INTO OUT FILE
 
 ![f15](https://github.com/user-attachments/assets/2ed595e5-9e22-4bed-94c4-34f1466cfaa7)
 
@@ -90,3 +94,5 @@ ff15.php
 - File List
 
 - CMD [ Linux ]
+
+ff15.php UNTUK VERSI NON INTO OUT FILE
